@@ -311,6 +311,8 @@ spec:
         - -jsz=all
         {{- end }}
         - http://localhost:8222/
+        livenessProbe: {{ toYaml .Values.exporter.livenessProbe | nindent 12 }}
+        readinessProbe: {{ toYaml .Values.exporter.readinessProbe | nindent 12 }}
         ports:
         - containerPort: 7777
           name: metrics

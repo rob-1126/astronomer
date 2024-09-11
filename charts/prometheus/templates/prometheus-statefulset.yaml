@@ -84,6 +84,8 @@ spec:
           image: {{ include "configReloader.image" . }}
           imagePullPolicy: {{ .Values.images.prometheus.pullPolicy }}
           securityContext: {{ template "prometheus.securityContext" . }}
+          livenessProbe: {{ toYaml .Values.configMapReloader.livenessProbe | nindent 12 }}
+          readinessProbe: {{ toYaml .Values.configMapReloader.readinessProbe | nindent 12 }}
           resources:
 {{ toYaml .Values.configMapReloader.resources | indent 12 }}
           volumeMounts:

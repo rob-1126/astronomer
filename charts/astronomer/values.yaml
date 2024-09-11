@@ -318,6 +318,8 @@ configSyncer:
   # If not provided, will generate a random hour and minutes to spread cronjob workloads.
   schedule: ~
   securityContext: {}
+  livenessProbe: ~
+  readinessProbe: ~
 
 commander:
   replicas: 2
@@ -424,6 +426,7 @@ install:
   cliEnabled: true
   resources: {}
   cliVersion: 0.29
+  readinessProbe: ~
   #  limits:
   #   cpu: 100m
   #   memory: 128Mi

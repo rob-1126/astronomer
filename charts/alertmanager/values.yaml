@@ -6,6 +6,8 @@ nodeSelector: {}
 affinity: {}
 tolerations: []
 
+livenessProbe: ~
+
 images:
   alertmanager:
     repository: quay.io/astronomer/ap-alertmanager

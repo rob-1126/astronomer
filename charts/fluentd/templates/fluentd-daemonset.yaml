@@ -68,6 +68,7 @@ spec:
           periodSeconds: {{ .Values.livenessProbeConfig.periodSeconds5 }}
           successThreshold: {{ .Values.livenessProbeConfig.successThreshold }}
           timeoutSeconds: {{ .Values.livenessProbeConfig.timeoutSeconds }}
+        readinessProbe: {{ toYaml .Values.readinessProbe | nindent 10 }}
         imagePullPolicy: {{ .Values.images.fluentd.pullPolicy }}
         env:
         - name: K8S_NODE_NAME

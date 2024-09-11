@@ -59,6 +59,8 @@ configMapReloader:
     # requests:
     #   cpu: 100m
     #   memory: 25Mi
+  livenessProbe: ~
+  readinessProbe: ~
 
 # Which directory prometheus data should be stored
 dataDir: "/prometheus"

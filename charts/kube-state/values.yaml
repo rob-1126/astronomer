@@ -6,6 +6,8 @@ nodeSelector: {}
 affinity: {}
 tolerations: []
 
+readinessProbe: ~
+
 images:
   kubeState:
     repository: quay.io/astronomer/ap-kube-state

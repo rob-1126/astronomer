@@ -253,6 +253,8 @@ reloader:
 exporter:
   enabled: true
   # resource configuration for the metrics sidecar
+  livenessProbe: ~
+  readinessProbe: ~
   resources:
     limits:
      cpu: 100m

@@ -174,6 +174,8 @@ exporter:
     requests:
      cpu: 50m
      memory: 80Mi
+  livenessProbe: ~
+  readinessProbe: ~
 ##################################
 #                                #
 #  Embedded NATS Configuration   #

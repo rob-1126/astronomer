@@ -155,6 +155,8 @@ spec:
           imagePullPolicy: {{ .Values.images.stan.pullPolicy }}
           securityContext: {{toYaml .Values.securityContext | nindent 12 }}
           resources: {{ toYaml .Values.exporter.resources | nindent 12 }}
+          livenessProbe: {{ toYaml .Values.exporter.livenessProbe | nindent 12 }}
+          readinessProbe: {{ toYaml .Values.exporter.readinessProbe | nindent 12 }}
           args:
           - -connz
           - -routez

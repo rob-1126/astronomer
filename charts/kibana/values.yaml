@@ -2,6 +2,9 @@ nodeSelector: {}
 affinity: {}
 tolerations: []
 
+livenessProbe: ~
+readinessProbe: ~
+
 images:
   kibana:
     repository: quay.io/astronomer/ap-kibana
