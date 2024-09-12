@@ -130,6 +130,9 @@ houston:
   worker:
     enabled: true
     replicas: 2
+    livenessProbe: ~
+    readinessProbe: ~
+
 
   # Automatically upgrade Airflow deployments to the latest
   # version specified by Houston configuration.
@@ -158,6 +161,8 @@ houston:
 
     # Only run on deployments marked as canary
     canary: false
+    livenessProbe: ~
+    readinessProbe: ~
 
   # Cleanup airflow db data
   # This runs as a CronJob
@@ -192,6 +197,9 @@ houston:
     # Run cleanup on specific table or list of tables in a comma separated format
     tables: ""
 
+    livenessProbe: ~
+    readinessProbe: ~
+
   # Cleanup task usage data and task audit data in Houston
   # This runs as a CronJob
   cleanupTaskUsageData:
@@ -218,6 +226,8 @@ houston:
 
     # Cleanup deploy revisions older than this many days
     olderThan: 90
+    livenessProbe: ~
+    readinessProbe: ~
 
   # Check for Astronomer Platform Updates
   # This runs as a CronJob
@@ -230,7 +240,8 @@ houston:
 
     # Default here is to run at midnight every night https://crontab.guru/#0_0_*_*_*
     schedule: "0 0 * * *"
-
+    livenessProbe: ~
+    readinessProbe: ~
   # Check for Airflow Updates
   # This runs as a CronJob
   updateAirflowCheck:
@@ -242,6 +253,8 @@ houston:
 
     # Run at minute 57 every hour https://crontab.guru/#57_*_*_*_*
     schedule: "57 * * * *"
+    livenessProbe: ~
+    readinessProbe: ~
 
   # Check for Astronomer Runtime Updates
   # This runs as a CronJob
@@ -254,6 +267,8 @@ houston:
 
     # Default here is to run at 00:43 every night https://crontab.guru/#43_0_*_*_*
     schedule: "43 0 * * *"
+    livenessProbe: ~
+    readinessProbe: ~
 
   # Populate daily task usage data
   # This runs as a CronJob
@@ -264,10 +279,14 @@ houston:
 
     # Print out the aggregated daily task usage data that should be inserted and skip actual insertion
     dryRun: false
+    livenessProbe: ~
+    readinessProbe: ~
 
   populateHourlyTaskAuditMetrics:
     # Run at minute 57 every hour https://crontab.guru/#57_*_*_*_*
     schedule: "57 * * * *"
+    livenessProbe: ~
+    readinessProbe: ~
 
   # this option allows to override airflow releases config
   #

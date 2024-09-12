@@ -39,8 +39,8 @@ spec:
         - name: cli-install
           image: {{ template "cliInstall.image" . }}
           imagePullPolicy: {{ .Values.images.cliInstall.pullPolicy }}
-          securityContext: {{ toYaml .Values.securityContext| nindent 12 }}
-          readinessProbe: {{ toYaml .Values.readinessProbe | nindent 12 }}
+          securityContext: {{ toYaml .Values.securityContext| nindent 14 }}
+          readinessProbe: {{ toYaml .Values.install.readinessProbe | nindent 12 }}
           livenessProbe:
             httpGet:
               path: /healthz

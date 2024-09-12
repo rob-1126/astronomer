@@ -89,6 +89,8 @@ spec:
         - name: houston
           image: {{ template "houston.image" . }}
           imagePullPolicy: {{ .Values.images.houston.pullPolicy }}
+          livenessProbe: {{ toYaml .Values.houston.worker.livenessProbe | nindent 12 }}
+          readinessProbe: {{ toYaml .Values.houston.worker.readinessProbe | nindent 12 }}
           securityContext: {{ toYaml (.Values.securityContext)| nindent 12 }}
           {{- if .Values.houston.worker.command }}
           command:

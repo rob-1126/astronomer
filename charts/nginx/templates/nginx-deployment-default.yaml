@@ -45,6 +45,7 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 30
             timeoutSeconds: 5
+          readinessProbe: {{ toYaml .Values.defaultBackend.readinessProbe | nindent 12 }}
           resources: {{ toYaml .Values.defaultBackend.resources | nindent 12 }}
           ports:
             - containerPort: {{ .Values.ports.defaultBackendHTTP }}

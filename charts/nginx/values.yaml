@@ -6,6 +6,8 @@ nodeSelector: {}
 affinity: {}
 tolerations: []
 
+readinessProbe: ~
+
 images:
   nginx:
     repository: quay.io/astronomer/ap-nginx
@@ -93,3 +95,4 @@ allowSnippetAnnotations: true
 
 defaultBackend:
   resources: {}
+  readinessProbe: ~

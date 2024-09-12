@@ -45,6 +45,8 @@ spec:
               image: {{ template "houston.image" . }}
               imagePullPolicy: {{ .Values.images.houston.pullPolicy }}
               securityContext: {{ toYaml .Values.securityContext | nindent 16 }}
+              livenessProbe: {{ toYaml .Values.houston.populateDailyTaskMetrics.livenessProbe | nindent 16 }}
+              readinessProbe: {{ toYaml .Values.houston.populateDailyTaskMetrics.readinessProbe | nindent 16 }}
               # If you supply only args for a Container, the default Entrypoint defined in the Docker image is run with the args that you supplied.
               args: ["yarn", "populate-daily-task-metrics", "--", "--dry-run={{ .Values.houston.populateDailyTaskMetrics.dryRun }}"]
               volumeMounts:

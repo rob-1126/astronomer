@@ -47,6 +47,8 @@ spec:
         - name: nginx
           image: {{ template "nginx-es.image" . }}
           imagePullPolicy: {{ .Values.images.nginx.pullPolicy }}
+          livenessProbe: {{ toYaml .Values.nginx.livenessProbe | nindent 12 }}
+          readinessProbe: {{ toYaml .Values.nginx.readinessProbe | nindent 12 }}
           securityContext:
 {{ toYaml .Values.nginx.securityContext | indent 12 }}
           resources:

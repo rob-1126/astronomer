@@ -96,6 +96,8 @@ spec:
           {{- end }}
         image: {{ template "elasticsearch.image" . }}
         imagePullPolicy: {{ .Values.images.es.pullPolicy }}
+        livenessProbe: {{ toYaml .Values.data.livenessProbe | nindent 10 }}
+        readinessProbe: {{ toYaml .Values.data.readinessProbe | nindent 10 }}
         env:
         - name: NAMESPACE
           valueFrom:

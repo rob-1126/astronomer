@@ -46,8 +46,8 @@ spec:
               image: {{ template "commander.image" . }}
               imagePullPolicy: {{ .Values.images.commander.pullPolicy }}
               securityContext: {{ template "configSyncer.securityContext" .  }}
-              livenessProbe: {{ toYaml .Values.configSyncer.livenessProbe | nindent 14 }}
-              readinessProbe: {{ toYaml .Values.configSyncer.readinessProbe | nindent 14 }}
+              livenessProbe: {{ toYaml .Values.configSyncer.livenessProbe | nindent 16 }}
+              readinessProbe: {{ toYaml .Values.configSyncer.readinessProbe | nindent 16 }}
               # If you supply only args for a Container, the default Entrypoint defined in the Docker image is run with the args that you supplied.
               args:
               - "sync"

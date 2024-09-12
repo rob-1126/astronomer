@@ -72,6 +72,7 @@ spec:
               port: {{ .Values.ports.healthz }}
             initialDelaySeconds: 30
             timeoutSeconds: 5
+          readinessProbe: {{ toYaml .Values.readinessProbe | nindent 12 }}
           env:
             - name: POD_NAME
               valueFrom:

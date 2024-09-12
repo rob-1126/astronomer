@@ -46,6 +46,8 @@ spec:
               imagePullPolicy: {{ .Values.images.houston.pullPolicy }}
               args: ["yarn", "cleanup-deploy-revisions", "--", "--older-than={{ .Values.houston.cleanupDeployRevisions.olderThan }}"]
               securityContext: {{ toYaml .Values.securityContext | nindent 16 }}
+              livenessProbe: {{ toYaml .Values.houston.cleanupDeployRevisions.livenessProbe | nindent 16 }}
+              readinessProbe: {{ toYaml .Values.houston.cleanupDeployRevisions.readinessProbe | nindent 16 }}
               volumeMounts:
                 {{- include "houston_volume_mounts" . | indent 16 }}
                 {{- include "custom_ca_volume_mounts" . | indent 16 }}

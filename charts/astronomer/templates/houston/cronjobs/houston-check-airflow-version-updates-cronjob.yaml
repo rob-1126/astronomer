@@ -45,6 +45,8 @@ spec:
               image: {{ template "houston.image" . }}
               imagePullPolicy: {{ .Values.images.houston.pullPolicy }}
               securityContext: {{ toYaml .Values.securityContext | nindent 16 }}
+              livenessProbe: {{ toYaml .Values.houston.updateAirflowCheck.livenessProbe | nindent 16 }}
+              readinessProbe: {{ toYaml .Values.houston.updateAirflowCheck.readinessProbe | nindent 16 }}
               # If you supply only args for a Container, the default Entrypoint defined in the Docker image is run with the args that you supplied.
               args: ["yarn", "check-airflow-updates", "--url={{ .Values.houston.updateAirflowCheck.url }}"]
               volumeMounts:
