@@ -5,6 +5,10 @@ tolerations: []
 livenessProbe: ~
 readinessProbe: ~
 
+defaultIndexJob:
+  livenessProbe: ~
+  readinessProbe: ~
+
 images:
   kibana:
     repository: quay.io/astronomer/ap-kibana

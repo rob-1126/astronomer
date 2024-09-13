@@ -37,6 +37,8 @@ spec:
         - name: kibana-default-index
           image: {{ template "kibana.init.image" . }}
           imagePullPolicy: {{ .Values.images.init.pullPolicy }}
+          livenessProbe: {{ toYaml .Values.defaultIndexJob.livenessProbe | nindent 12 }}
+          readinessProbe: {{ toYaml .Values.defaultIndexJob.readinessProbe | nindent 12 }}
           resources: {{ toYaml .Values.resources | nindent 12 }}
           securityContext: {{ template "kibana.securityContext" . }}
           command:

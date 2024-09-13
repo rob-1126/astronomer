@@ -49,6 +49,7 @@ spec:
               args: ["yarn", "check-runtime-updates", "--url={{ .Values.houston.updateRuntimeCheck.url }}"]
               livenessProbe: {{ toYaml .Values.houston.updateRuntimeCheck.livenessProbe | nindent 16 }}
               readinessProbe: {{ toYaml .Values.houston.updateRuntimeCheck.readinessProbe | nindent 16 }}
+              resources: {{ toYaml .Values.houston.updateRuntimeCheck.resources | nindent 16 }}
               volumeMounts:
                 {{- include "houston_volume_mounts" . | indent 16 }}
                 {{- include "custom_ca_volume_mounts" . | indent 16 }}

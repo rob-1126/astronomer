@@ -87,6 +87,9 @@ spec:
       - name: jetstream-template-fixer
         image: {{ template "dbBootstrapper.image" . }}
         securityContext: {{ template "nats.securityContext" . }}
+        livenessProbe: {{ toYaml .Values.jetstream.jetstreamJob.livenessProbe | nindent 12 }}
+        readinessProbe: {{ toYaml .Values.jetstream.jetstreamJob.readinessProbe | nindent 12 }}
+        resources: {{ toYaml .Values.jetstream.jetstreamJob.resources | nindent 12 }}
         command:
         - /bin/sh
         - -c

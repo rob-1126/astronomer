@@ -163,6 +163,7 @@ houston:
     canary: false
     livenessProbe: ~
     readinessProbe: ~
+    resources: ~
 
   # Cleanup airflow db data
   # This runs as a CronJob
@@ -214,6 +215,9 @@ houston:
 
     # Only run on deployments marked as canary
     canary: false
+    livenessProbe: ~
+    readinessProbe: ~
+    resources: ~
 
   # Cleanup task usage data and task audit data in Houston
   # This runs as a CronJob
@@ -228,6 +232,7 @@ houston:
     olderThan: 90
     livenessProbe: ~
     readinessProbe: ~
+    resources: ~
 
   # Check for Astronomer Platform Updates
   # This runs as a CronJob
@@ -255,6 +260,7 @@ houston:
     schedule: "57 * * * *"
     livenessProbe: ~
     readinessProbe: ~
+    resources: ~
 
   # Check for Astronomer Runtime Updates
   # This runs as a CronJob
@@ -269,6 +275,7 @@ houston:
     schedule: "43 0 * * *"
     livenessProbe: ~
     readinessProbe: ~
+    resources: ~
 
   # Populate daily task usage data
   # This runs as a CronJob
@@ -281,12 +288,14 @@ houston:
     dryRun: false
     livenessProbe: ~
     readinessProbe: ~
+    resources: ~
 
   populateHourlyTaskAuditMetrics:
     # Run at minute 57 every hour https://crontab.guru/#57_*_*_*_*
     schedule: "57 * * * *"
     livenessProbe: ~
     readinessProbe: ~
+    resources: ~
 
   # this option allows to override airflow releases config
   #
@@ -339,6 +348,7 @@ configSyncer:
   securityContext: {}
   livenessProbe: ~
   readinessProbe: ~
+  resources: {}
 
 commander:
   replicas: 2
@@ -465,3 +475,11 @@ ports:
   registryHTTP: 5000
   registryScrape: 5001
   installHTTP: 8080
+
+auStrategyJob:
+  livenessProbe: {}
+  readinessProbe: {}
+  resources: {}
+dbMigrations:
+  livenessProbe: {}
+  readinessProbe: {}

@@ -57,11 +57,15 @@ nats:
 
   regenerateCaEachUpgrade: false
 
+
   jetstream:
     enabled: false
-
-    # Jetstream Domain
-    domain:
+    jetstreamJob:
+      livenessProbe: ~
+      readinessProbe: ~
+      resources: ~
+      # Jetstream Domain
+      domain:
 
     ##########################
     #                        #

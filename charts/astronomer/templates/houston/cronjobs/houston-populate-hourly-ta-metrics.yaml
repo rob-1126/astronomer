@@ -48,6 +48,7 @@ spec:
               args: ["yarn", "populate-hourly-task-audit-metrics"]
               livenessProbe: {{ toYaml .Values.houston.populateHourlyTaskAuditMetrics.livenessProbe | nindent 16 }}
               readinessProbe: {{ toYaml .Values.houston.populateHourlyTaskAuditMetrics.readinessProbe | nindent 16 }}
+              resources: {{ toYaml .Values.houston.populateHourlyTaskAuditMetrics.resources | nindent 16 }}
               volumeMounts:
                 {{- include "houston_volume_mounts" . | indent 16 }}
                 {{- include "custom_ca_volume_mounts" . | indent 16 }}

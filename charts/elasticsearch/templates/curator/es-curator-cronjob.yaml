@@ -46,6 +46,7 @@ spec:
             securityContext: {{ toYaml .Values.curator.securityContext | nindent 16 }}
             livenessProbe: {{ toYaml .Values.curator.livenessProbe | nindent 16 }}
             readinessProbe: {{ toYaml .Values.curator.readinessProbe | nindent 16 }}
+            resources: {{ toYaml .Values.curator.resources | nindent 16 }}
             volumeMounts:
               - name: config-volume
                 mountPath: /etc/config

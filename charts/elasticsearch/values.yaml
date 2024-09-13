@@ -195,6 +195,7 @@ curator:
 
   livenessProbe: ~
   readinessProbe: ~
+  resources: ~
 
   # Allows modification of the default age-based filter. If you require more
   # sophisticated filtering, modify the action file specified in
