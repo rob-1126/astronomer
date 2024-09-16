@@ -33,6 +33,7 @@ spec:
         {{- end }}
       spec:
 {{- include "kibana.imagePullSecrets" . | indent 8 }}
+        serviceAccountName: {{ .Values.defaultIndexJob.serviceAccountName }}
         containers:
         - name: kibana-default-index
           image: {{ template "kibana.init.image" . }}

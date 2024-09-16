@@ -8,6 +8,7 @@ readinessProbe: ~
 defaultIndexJob:
   livenessProbe: ~
   readinessProbe: ~
+  serviceAccountName: default
 
 images:
   kibana:
