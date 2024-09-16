@@ -185,3 +185,4 @@ exporter:
 # nats chart values.
 persistence:
   annotations: {}
+serviceAccountName: default

@@ -40,6 +40,7 @@ spec:
 {{ toYaml (default .Values.global.platformNodePool.tolerations .Values.tolerations) | indent 12 }}
           restartPolicy: Never
 {{- include "astronomer.imagePullSecrets" . | indent 10 }}
+          serviceAccountName: {{ .Values.houston.populateHourlyTaskAuditMetrics.serviceAccountName }}
           containers:
             - name: populate-daily-task-metrics
               image: {{ template "houston.image" . }}

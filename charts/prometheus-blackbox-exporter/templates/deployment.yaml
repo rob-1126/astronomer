@@ -46,6 +46,7 @@ spec:
       {{- if .Values.priorityClassName }}
       priorityClassName: "{{ .Values.priorityClassName }}"
       {{- end }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
         - name: blackbox-exporter
           image: {{ template "prometheus-blackbox-exporter.image" . }}

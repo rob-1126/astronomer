@@ -37,6 +37,7 @@ spec:
             version: {{ .Chart.Version }}
         spec:
 {{- include "elasticsearch.imagePullSecrets" . | indent 10 }}
+          serviceAccountName: {{ .Values.curator.serviceAccountName }}
           containers:
           - name: curator
             image: {{ template "curator.image" . }}

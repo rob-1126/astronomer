@@ -116,3 +116,5 @@ astroServices:
     enabled: true
   cliInstall:
     enabled: true
+
+serviceAccountName: "default"

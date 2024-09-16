@@ -53,6 +53,7 @@ spec:
 {{ toYaml (default .Values.global.platformNodePool.affinity .Values.affinity) | indent 8 }}
       tolerations:
 {{ toYaml (default .Values.global.platformNodePool.tolerations .Values.tolerations) | indent 8 }}
+      serviceAccountName: {{ .Values.nats.serviceAccount }}
       # Common volumes for the containers.
       volumes:
       - name: config-volume

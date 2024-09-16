@@ -45,6 +45,7 @@ securityContext:
 astroUI:
   replicas: 2
   env: []
+  serviceAccountName: "default"
   # This only applies when replicas > 3
   maxUnavailable: 25%
   resources: {}
@@ -164,6 +165,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   # Cleanup airflow db data
   # This runs as a CronJob
@@ -218,6 +220,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   # Cleanup task usage data and task audit data in Houston
   # This runs as a CronJob
@@ -233,6 +236,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   # Check for Astronomer Platform Updates
   # This runs as a CronJob
@@ -261,6 +265,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   # Check for Astronomer Runtime Updates
   # This runs as a CronJob
@@ -276,6 +281,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   # Populate daily task usage data
   # This runs as a CronJob
@@ -289,6 +295,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   populateHourlyTaskAuditMetrics:
     # Run at minute 57 every hour https://crontab.guru/#57_*_*_*_*
@@ -296,6 +303,7 @@ houston:
     livenessProbe: ~
     readinessProbe: ~
     resources: ~
+    serviceAccountName: "default"
 
   # this option allows to override airflow releases config
   #

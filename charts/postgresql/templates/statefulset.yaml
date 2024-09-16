@@ -93,6 +93,7 @@ spec:
           mountPath: {{ .Values.persistence.mountPath }}
           subPath: {{ .Values.persistence.subPath }}
       {{- end }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
       - name: {{ template "postgresql.fullname" . }}
         image: {{ template "postgresql.image" . }}

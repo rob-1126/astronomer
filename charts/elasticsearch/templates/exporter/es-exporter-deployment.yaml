@@ -54,6 +54,7 @@ spec:
       securityContext:
 {{ toYaml .Values.exporter.podSecurityContext | indent 8 }}
 {{- include "elasticsearch.imagePullSecrets" . | indent 6 }}
+      serviceAccountName: {{ .Values.exporter.serviceAccountName }}
       containers:
         - name: metrics-exporter
           image: {{ template "exporter.image" . }}

@@ -34,6 +34,7 @@ spec:
       tolerations:
 {{ toYaml (default .Values.global.platformNodePool.tolerations .Values.tolerations) | indent 8 }}
 {{- include "kibana.imagePullSecrets" . | indent 6 }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
       - name: kibana
         image: {{ template "kibana.image" . }}

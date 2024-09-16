@@ -196,6 +196,7 @@ curator:
   livenessProbe: ~
   readinessProbe: ~
   resources: ~
+  serviceAccountName: default
 
   # Allows modification of the default age-based filter. If you require more
   # sophisticated filtering, modify the action file specified in
@@ -206,6 +207,7 @@ curator:
     unit_count: 10
 
 exporter:
+  serviceAccountName: default
   podAnnotations: {}
   # Number of exporter instances
   replicas: 1
@@ -246,6 +248,7 @@ exporter:
 
 # NGINX Elasticsearch values
 nginx:
+  serviceAccountName: default
   replicas: 1
   podAnnotations: {}
   fullnameOverride: ~

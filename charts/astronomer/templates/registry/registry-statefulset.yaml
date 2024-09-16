@@ -47,6 +47,8 @@ spec:
     spec:
 {{- if .Values.registry.serviceAccount.create }}
       serviceAccountName: {{ template "registry.ServiceAccount" . }}
+{{- else }}
+      serviceAccountName: {{ .Values.registry.serviceAccount.name | default "default" }}
 {{- end }}
       nodeSelector:
 {{ toYaml (default .Values.global.platformNodePool.nodeSelector .Values.nodeSelector) | indent 8 }}
