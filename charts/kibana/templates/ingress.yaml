@@ -13,9 +13,7 @@ metadata:
     chart: {{ template "kibana.chart" . }}
     heritage: {{ .Release.Service }}
   annotations:
-    {{- if .Values.global.authSidecar.enabled  }}
 {{- toYaml .Values.global.extraAnnotations | nindent 4 }}
-    {{- else }}
     kubernetes.io/ingress.class: "{{ .Release.Name }}-nginx"
     kubernetes.io/tls-acme: {{ eq .Values.global.acme true | quote }}
     {{- include "houston.internalauthurl" . | indent 4 }}
@@ -23,7 +21,6 @@ metadata:
     nginx.ingress.kubernetes.io/auth-response-headers: authorization, username, email
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "Content-Security-Policy: script-src 'self'";
-    {{- end }}
 spec:
   {{- if or .Values.global.tlsSecret .Values.global.acme }}
   tls:
