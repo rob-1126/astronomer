@@ -238,6 +238,10 @@ houston:
     resources: ~
     serviceAccountName: "default"
 
+  dbMigrations:
+    livenessProbe: {}
+    readinessProbe: {}
+    
   # Check for Astronomer Platform Updates
   # This runs as a CronJob
   updateCheck:
@@ -488,6 +492,3 @@ auStrategyJob:
   livenessProbe: {}
   readinessProbe: {}
   resources: {}
-dbMigrations:
-  livenessProbe: {}
-  readinessProbe: {}
