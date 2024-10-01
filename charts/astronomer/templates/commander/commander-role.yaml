@@ -49,25 +49,41 @@ rules:
 # Important to understand: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#privilege-escalation-prevention-and-bootstrapping
 - apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["roles"]
-  verbs: ["create", "delete", "deletecollection", "get", "list", "patch", "update", "watch", "escalate", "bind"]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "patch", "update", "watch"]
 - apiGroups: [""]
   resources: ["persistentvolumeclaims"]
   verbs: ["create", "delete", "deletecollection", "get", "list", "update", "watch", "patch"]
 - apiGroups: [""]
   resources: ["pods"]
-  verbs: ["get", "list", "watch"]
+  verbs: ["get", "list", "watch", "delete"]
+###
+### Start of new additions required for transative security checks
+###
+# required for pod-launcher-role for KubernetesExecutor and KubernetesPodOperator
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get", "list"]
+# required for pod-launcher-role for KubernetesExecutor and KubernetesPodOperator
+- apiGroups: [""]
+  resources: ["pods/status"]
+  verbs: ["get", "list"]
+# required for pod-launcher-role for KubernetesExecutor and KubernetesPodOperator
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create", "patch","get"]
+# required for pod-launcher-role for KubernetesExecutor and KubernetesPodOperator
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["create", "patch"]
+###
+### End of new additions required for transative security checks
+###
 - apiGroups: [""]
   resources: ["endpoints"]
   verbs: ["create", "delete", "get", "list", "update", "watch"]
 - apiGroups: [""]
   resources: ["limitranges"]
   verbs: ["create", "delete", "get", "list", "watch", "patch"]
-- apiGroups: [""]
-  resources: ["nodes"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: [""]
-  resources: ["nodes/proxy"]
-  verbs: ["get", "list", "watch"]
 - apiGroups: [""]
   resources: ["persistentvolumes"]
   verbs: ["create", "delete", "get", "list", "watch", "patch"]
@@ -110,9 +126,6 @@ rules:
 - apiGroups: ["extensions"]
   resources: ["ingresses"]
   verbs: ["create", "delete", "get", "patch", "list", "watch"]
-- apiGroups: ["extensions"]
-  resources: ["ingresses/status"]
-  verbs: ["update", "list", "watch"]
 - apiGroups: ["networking.k8s.io"]
   resources: ["ingresses"]
   verbs: ["get", "create", "delete", "patch", "list", "watch"]
@@ -124,21 +137,10 @@ rules:
   verbs: ["create", "delete", "get", "patch", "list", "watch"]
 - apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["rolebindings"]
-  verbs: ["create", "delete", "get", "patch", "list", "watch"]
-- apiGroups: ["authentication.k8s.io"]
-  resources: ["tokenreviews"]
-  verbs: ["create", "delete", "list", "watch"]
-- apiGroups: ["authorization.k8s.io"]
-  resources: ["subjectaccessreviews"]
-  verbs: ["create", "delete", "list", "watch"]
+  verbs: ["create", "delete", "get", "patch", "list"]
 - apiGroups: ["policy"]
   resources: ["poddisruptionbudgets"]
-  verbs: ["create", "delete", "get", "list", "patch", "watch"]
-{{- if $useClusterRoles }}
-# permissions for "nonResourceURLs" can only be applied on ClusterRoles
-- nonResourceURLs: ["/metrics"]
-  verbs: ["get"]
-{{- end }}
+  verbs: ["create", "delete", "get", "list", "patch"]
 {{- if $.Values.houston.config.deployments }}
 {{- if $.Values.houston.config.deployments.helm }}
 {{- if $.Values.houston.config.deployments.helm.airflow }}
@@ -149,7 +151,7 @@ rules:
 # Helm doesn't allow to check if values and sub-values are defined in a "clean" way, we have to do this cascading IF statements
 - apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["clusterroles"]
-  verbs: ["create", "delete", "get", "patch", "list", "watch", "escalate", "bind"]
+  verbs: ["create", "delete", "get", "patch", "list"]
 - apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["clusterrolebindings"]
   verbs: ["create", "delete", "get", "patch", "list", "watch"]

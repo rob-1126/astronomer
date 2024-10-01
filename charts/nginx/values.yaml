@@ -94,5 +94,6 @@ enableAnnotationValidations: false
 allowSnippetAnnotations: true
 
 defaultBackend:
+  enabled: true
   resources: {}
   readinessProbe: ~

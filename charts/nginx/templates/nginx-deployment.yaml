@@ -45,7 +45,9 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
           args:
             - /nginx-ingress-controller
+            {{- if .Values.defaultBackend.enabled }}
             - --default-backend-service={{ .Release.Namespace }}/{{ template "nginx.fullname" . }}-default-backend
+            {{- end }}
             - --configmap={{ .Release.Namespace }}/{{ template "nginx.fullname" . }}-ingress-controller
             - --ingress-class={{ template "nginx.ingress.class" . }}
             - --default-ssl-certificate={{ .Release.Namespace }}/{{ .Values.global.tlsSecret }}
