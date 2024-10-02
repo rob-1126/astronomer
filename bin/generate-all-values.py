@@ -36,6 +36,39 @@ def deep_merge(dict1, dict2):
 
 # Function to download a chart using requests
 def download_chart(chart_name, version=None, repository=None, destination_dir=None):
+    # if its a local path, just return it
+    # if its a file:// deal with it
+    if repository and repository.startswith("file://"):
+        # if its a directory, return the path
+        local_path = Path(repository[7:]).expanduser().resolve()
+        if local_path.is_dir():
+            return local_path
+        #if its a tgz or zip, extract it and return
+        elif local_path.suffix in ['.tgz', '.zip', '.tar', '.tar.gz']:
+            destination_dir = Path(destination_dir or tempfile.mkdtemp())
+            shutil.unpack_archive(str(local_path), str(destination_dir))
+            return destination_dir / local_path.stem
+    else:
+        # if its a remote repo, construct the URL
+        if repository:
+            url = f"{repository}/{chart_name}-{version}.tgz" if version else f"{repository}/{chart_name}.tgz"
+        else:
+            url = f"https://charts.helm.sh/stable/{chart_name}-{version}.tgz" if version else f"https://charts.helm.sh/stable/{chart_name}.tgz"
+        
+        destination_dir = Path(destination_dir or tempfile.mkdtemp())
+        
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+
+        chart_tgz_path = destination_dir / f"{chart_name}.tgz"
+        with chart_tgz_path.open('wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        
+        # Extract the chart
+        shutil.unpack_archive(str(chart_tgz_path), str(destination_dir))
+        chart_tgz_path.unlink()
+
     if repository:
         url = f"{repository}/{chart_name}-{version}.tgz" if version else f"{repository}/{chart_name}.tgz"
     else:
